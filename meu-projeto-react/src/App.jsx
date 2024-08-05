@@ -4,15 +4,11 @@ import { Header } from './Header';
 import { useForm } from 'react-hook-form';
 
 function App() {
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const usernameRef = useRef(null);
+ const {register, handleSubmit} = useForm();
 
 
-  function handleSave(e){
-    e.preventDefault();
-
- 
+  function handleSave(data){
+    console.log(data)
   }
 
 
@@ -21,7 +17,7 @@ function App() {
       <h1>React</h1>
       <Header/>
 
-      <form className="form" onSubmit={handleSave}>
+      <form className="form" onSubmit={handleSubmit(handleSave)}>
 
  
 
@@ -29,18 +25,24 @@ function App() {
           type="text"
           placeholder="Digite seu nome..."
           className="input"
+          {...register('name', {required: true} )}
+          id='name'
         />
 
         <input
           type="text"
           placeholder="Digite seu email..."
           className="input"
+          {...register('email', {required: true})}
+          id='email'
         />
 
         <input
           type="text"
           placeholder="Digite seu username..."
           className="input"
+          {...register('username' , {required: true})}
+          id='username'
         />
 
 
